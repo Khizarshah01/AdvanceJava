@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Test Page - Unit 2</title>
+    <style>
+        /* Add your custom CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Multiple Choice Questions - Unit 2</h1>
+    <form id="mcq-form">
+        <div id="questions-container"></div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const questions = [
+        {
+    question: "Swing is not a part of JFC (Java Foundation Classes) that is used to create GUI application",
+    choices: ["TRUE", "FALSE"],
+    correctAnswer: "FALSE"
+},
+{
+    question: "Pluggable look and feel and lightweight components are the features supported by _______.",
+    choices: ["Swing", "AWT", "Core Java", "None of these"],
+    correctAnswer: "Swing"
+},
+{
+    question: "Swing is based on __ architecture.",
+    choices: ["client-server model", "view controller", "layered", "none of these"],
+    correctAnswer: "view controller"
+},
+{
+    question: "Following letter used as a prefix to swing component.",
+    choices: ["A", "S", "gif file", "J"],
+    correctAnswer: "J"
+},
+{
+    question: "In Swing, JButton class is derived from __ .",
+    choices: ["AbstractButton", "JToggleButton", "JComponent", "None of these"],
+    correctAnswer: "AbstractButton"
+},
+{
+    question: "In the Swing class hierarchy, the class present at the root is ____",
+    choices: ["Component", "Window", "Container", "Object"],
+    correctAnswer: "Component"
+},
+{
+    question: "________pane can be used to add components to the container.",
+    choices: ["Glass", "Content", "Container", "All of the above"],
+    correctAnswer: "All of the above"
+},
+{
+    question: "To represent an Icon file in a Swing label, we use",
+    choices: ["setImg", "setIcon", "setLabelIcon", "None of these"],
+    correctAnswer: "setIcon"
+},
+{
+    question: "Which method of the Component class is used to set the position and size of a component?",
+    choices: ["setPosition", "setBounds", "setSize", "none of these"],
+    correctAnswer: "setBounds"
+},
+{
+    question: "The difference between Scrollbar and Scrollpane is _______",
+    choices: [
+        "Scrollbar is a component and Scrollpane is a container",
+        "Scrollbar is a container and Scrollpane is a component",
+        "Scrollbar and Scrollpane both are components and not containers",
+        "Scrollbar and Scrollpane both are containers and not components"
+    ],
+    correctAnswer: "Scrollbar is a component and Scrollpane is a container"
+},
+{
+    question: "MVC stands for ______",
+    choices: ["Model Version Control", "Model View Controller", "Mini View Controller", "Major View Controller"],
+    correctAnswer: "Model View Controller"
+},
+{
+    question: "In Swing, _______ gives the visual representation of the component.",
+    choices: ["Model", "View", "Controller", "None of these"],
+    correctAnswer: "View"
+},
+{
+    question: "JPanel and Applet use____________ as their default layout.",
+    choices: ["FlowLayout", "GridLayout", "BorderLayout", "GridBagLayout"],
+    correctAnswer: "FlowLayout"
+},
+{
+    question: "Which of the following components supports multiple selection?",
+    choices: ["JList", "JComboBox", "JLabel", "All of the above"],
+    correctAnswer: "All of the above"
+},
+{
+    question: "The subclass of JToggleButton is _______",
+    choices: ["JButton", "JCheckBox", "JRadioButton", "Both b and c"],
+    correctAnswer: "Both b and c"
+},
+{
+    question: "Select the correct option:\nI. Canvas is a component\nII. ScrollPane is a container",
+    choices: ["I is True and II is False", "I is False and II is True", "I and II both are False", "I and II both are true"],
+    correctAnswer: "I is True and II is False"
+},
+{
+    question: "Frame class Extends Window.",
+    choices: ["TRUE", "FALSE"],
+    correctAnswer: "TRUE"
+},
+{
+    question: "Which is the container class?",
+    choices: ["Window", "Frame", "Dialog", "All of the above"],
+    correctAnswer: "All of the above"
+},
+{
+    question: "Following is an uneditable control",
+    choices: ["Button", "TextField", "Label", "List"],
+    correctAnswer: "Label"
+},
+{
+    question: "Where are the following four methods commonly used?\n1) public void add(Component c)\n2) public void setSize(int width, int height)\n3) public void setLayout(LayoutManager m)\n4) public void setVisible(boolean)",
+    choices: ["Graphics class", "Component class", "Both A & B", "None of the above"],
+    correctAnswer: "Both A & B"
+},
+{
+    question: "The Java Foundation Classes (JFC) is a set of GUI components which simplify the development of desktop applications.",
+    choices: ["TRUE", "FALSE"],
+    correctAnswer: "TRUE"
+},
+{
+    question: "The following\na) It is lightweight.\nb) It supports pluggable look and feel.\nc) It follows MVC (Model View Controller) architecture\nare the advantages of _____ .",
+    choices: ["Swing", "AWT", "Both A & B", "None of these"],
+    correctAnswer: "Swing"
+}
+];
+
+            // Add more questions here
+      
+
+        const questionsContainer = document.getElementById('questions-container');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `
+                <p>${index + 1}. ${q.question}</p>
+                ${q.choices.map((choice, i) => `
+                    <label>
+                        <input type="radio" name="q${index}" value="${choice}">
+                        ${String.fromCharCode(97 + i)}) ${choice}
+                    </label>
+                `).join('')}
+            `;
+            questionsContainer.appendChild(questionDiv);
+        });
+
+        document.getElementById('mcq-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let score = 0;
+
+            questions.forEach((q, index) => {
+                const userAnswer = document.querySelector(`input[name="q${index}"]:checked`);
+                if (userAnswer && userAnswer.value === q.correctAnswer) {
+                    score++;
+                }
+            });
+
+            alert(`You scored ${score} out of ${questions.length}`);
+        });
+    </script>
+</body>
+</html>
