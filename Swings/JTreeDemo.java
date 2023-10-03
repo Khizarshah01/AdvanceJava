@@ -34,7 +34,7 @@ public class JTreeDemo {
         JScrollPane jsp = new JScrollPane(tree);
         f.add(jsp, BorderLayout.CENTER);
         f.setSize(500, 500);
-        f.setVisible(true);
+        f.setVisible(true);                      
 
     }
 
