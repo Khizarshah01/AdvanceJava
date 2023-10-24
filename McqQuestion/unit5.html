@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDBC MCQ Test Page</title>
+    <style>
+        /* Add your custom CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>JDBC Multiple Choice Questions</h1>
+    <form id="mcq-form">
+        <div id="questions-container"></div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const questions = [
+            {
+                question: "What are the major components of the JDBC?",
+                choices: [
+                    "a. DriverManager, Driver, Connection, Statement, and ResultSet",
+                    "b. DriverManager, Driver, Connection, and Statement",
+                    "c. DriverManager, Statement, and ResultSet",
+                    "d. DriverManager, Connection, Statement, and ResultSet"
+                ],
+                correctAnswer: "a"
+            },
+            {
+                question: "Select the packages in which JDBC classes are defined?",
+                choices: ["a. jdbc and javax.jdbc", "b. rdb and javax.rdb", "c. jdbc and java.jdbc.sql", "d. sql and javax.sql"],
+                correctAnswer: "d"
+            },
+            {
+                question: "Thin driver is also known as?",
+                choices: ["a. Type 3 Driver", "b. Type-2 Driver", "c. Type-4 Driver", "d. Type-1 Driver"],
+                correctAnswer: "c"
+            },
+            {
+                question: "What is the correct sequence to create a database connection?",
+                choices: [
+                    "a. i, ii, iii, v, iv, vii, viii, vi",
+                    "b. i, iii, ii, v, iv, vii, vi, viii",
+                    "c. ii, i, iii, iv, viii, vii, v, vi",
+                    "d. i, iii, ii, iv, v, vi, vii, viii"
+                ],
+                correctAnswer: "b"
+            },
+            {
+                question: "Which of the following method is used to perform DML statements in JDBC?",
+                choices: ["a. executeResult()", "b. executeQuery()", "c. executeUpdate()", "d. execute()"],
+                correctAnswer: "c"
+            },
+            {
+                question: "How many transaction isolation levels provide the JDBC through the Connection interface?",
+                choices: ["a. 3", "b. 4", "c. 7", "d. 2"],
+                correctAnswer: "b"
+            },
+            {
+                question: "Which of the following method is static and synchronized in JDBC API?",
+                choices: ["a. getConnection()", "b. prepareCall()", "c. executeUpdate()", "d. executeQuery()"],
+                correctAnswer: "a"
+            },
+            {
+                question: "Which methods are required to load a database driver in JDBC?",
+                choices: ["a. getConnection()", "b. registerDriver()", "c. forName()", "d. Both b and c"],
+                correctAnswer: "d"
+            },
+            {
+                question: "Parameterized queries can be executed by?",
+                choices: ["a. ParameterizedStatement", "b. PreparedStatement", "c. CallableStatement and Parameterized Statement", "d. All kinds of Statements"],
+                correctAnswer: "b"
+            },
+            {
+                question: "Which of the following is not a valid statement in JDBC?",
+                choices: ["a. Statement", "b. PreparedStatement", "c. QueryStatement", "d. CallableStatement"],
+                correctAnswer: "c"
+            }
+            // Add more questions here
+        ];
+
+        const questionsContainer = document.getElementById('questions-container');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `
+                <p>${index + 1}) ${q.question}</p>
+                ${q.choices.map((choice, i) => `
+                    <label>
+                        <input type="radio" name="q${index}" value="${choice.charAt(0)}">
+                        ${choice}
+                    </label>
+                `).join('')}
+                <hr>
+            `;
+            questionsContainer.appendChild(questionDiv);
+        });
+
+        document.getElementById('mcq-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let score = 0;
+
+            questions.forEach((q, index) => {
+                const userAnswer = document.querySelector(`input[name="q${index}"]:checked`);
+                if (userAnswer && userAnswer.value === q.correctAnswer) {
+                    score++;
+                }
+            });
+
+            alert(`You scored ${score} out of ${questions.length}`);
+        });
+    </script>
+</body>
+</html>
+

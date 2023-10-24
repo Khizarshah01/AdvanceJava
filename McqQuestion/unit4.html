@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4 MCQ Test Page</title>
+    <style>
+        /* Add your custom CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Unit 4 Multiple Choice Questions</h1>
+    <form id="mcq-form">
+        <div id="questions-container"></div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const questions = [
+            {
+                question: "Which of these packages contains classes and interfaces for networking?",
+                choices: ["a) java.io", "b) java.util", "c) java.net", "d) java.network"],
+                correctAnswer: "c"
+            },
+            {
+                question: "Which of these is a protocol for breaking and sending packets to an address across a network?",
+                choices: ["a) TCP/IP", "b) DNS", "c) Socket", "d) Proxy Server"],
+                correctAnswer: "a"
+            },
+            {
+                question: "How many ports of TCP/IP are reserved for specific protocols?",
+                choices: ["a) 10", "b) 1024", "c) 2048", "d) 512"],
+                correctAnswer: "b"
+            },
+            {
+                question: "How many bits are in a single IP address?",
+                choices: ["a) 8", "b) 16", "c) 32", "d) 64"],
+                correctAnswer: "c"
+            },
+            {
+                question: "Which of these is a full form of DNS?",
+                choices: ["a) Data Network Service", "b) Data Name Service", "c) Domain Network Service", "d) Domain Name Service"],
+                correctAnswer: "d"
+            },
+            {
+                question: "Which of these classes is used to encapsulate IP address and DNS?",
+                choices: ["a) DatagramPacket", "b) URL", "c) InetAddress", "d) ContentHandler"],
+                correctAnswer: "c"
+            },
+            {
+                question: "What will be the output of the following Java program?",
+                code: `
+                    import java.net.*;
+                    class Networking {
+                        public static void main(String[] args) throws UnknownHostException {
+                            InetAddress obj1 = InetAddress.getByName("sanfoundry.com");
+                            InetAddress obj2 = InetAddress.getByName("sanfoundry.com");
+                            boolean x = obj1.equals(obj2);
+                            System.out.print(x);
+                        }
+                    }
+                `,
+                correctAnswer: "c"
+            },
+            {
+                question: "What will be the output of the following Java program?",
+                code: `
+                    import java.net.*;
+                    public class Networking {
+                        public static void main(String[] args) throws UnknownHostException {
+                            InetAddress obj1 = InetAddress.getByName("cisco.com");
+                            InetAddress obj2 = InetAddress.getByName("sanfoundry.com");
+                            boolean x = obj1.equals(obj2);
+                            System.out.print(x);
+                        }
+                    }
+                `,
+                correctAnswer: "d"
+            },
+            {
+                question: "What will be the output of the following Java program?",
+                code: `
+                    import java.io.*;
+                    import java.net.*;
+                    public class URLDemo {
+                        public static void main(String[] args) {
+                            try {
+                                URL url = new URL("https://www.sanfoundry.com/java-mcq");
+                                System.out.println("Protocol: " + url.getProtocol());
+                                System.out.println("Host Name: " + url.getHost());
+                                System.out.println("Port Number: " + url.getPort());
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }
+                        }
+                    }
+                `,
+                correctAnswer: "d"
+            },
+            {
+                question: "What will be the output of the following Java program?",
+                code: `
+                    import java.net.*;
+                    class Networking {
+                        public static void main(String[] args) throws UnknownHostException {
+                            InetAddress obj1 = InetAddress.getByName("cisco.com");
+                            System.out.print(obj1.getHostName());
+                        }
+                    }
+                `,
+                correctAnswer: "b"
+            }
+            // Add more questions here
+        ];
+
+        const questionsContainer = document.getElementById('questions-container');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `
+                <p>${index + 1}. ${q.question}</p>
+                ${q.choices ? q.choices.map((choice, i) => `
+                    <label>
+                        <input type="radio" name="q${index}" value="${choice.charAt(0)}">
+                        ${choice}
+                    </label>
+                `).join('') : ''}
+                ${q.code ? `<pre>${q.code.trim()}</pre>` : ''}
+                <hr>
+            `;
+            questionsContainer.appendChild(questionDiv);
+        });
+
+        document.getElementById('mcq-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let score = 0;
+
+            questions.forEach((q, index) => {
+                const userAnswer = document.querySelector(`input[name="q${index}"]:checked`);
+                if (userAnswer && userAnswer.value === q.correctAnswer) {
+                    score++;
+                }
+            });
+
+            alert(`Your score: ${score} out of ${questions.length}`);
+        });
+    </script>
+</body>
+</html>
+

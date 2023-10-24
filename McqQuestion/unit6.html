@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 MCQ Test Page</title>
+    <style>
+        /* Add your custom CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Unit 6 Multiple Choice Questions</h1>
+    <form id="mcq-form">
+        <div id="questions-container"></div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const questions = [
+            {
+                question: "How constructor can be used for a servlet?",
+                choices: ["A. Initialization and Constructor function", "B. Constructor function", "C. Setup() method", "D. Initialization"],
+                correctAnswer: "A"
+            },
+            {
+                question: "Which package is used for importing swing components?",
+                choices: ["A. javax.swing", "B. java.swing", "C. java.awt.", "D. All of the mentioned"],
+                correctAnswer: "A"
+            },
+            {
+                question: "Which of the following is/are steps for the servlet life cycle?",
+                choices: ["A. Servlet class is loaded", "B. Servlet instance is created", "C. init,Service,destroy method is invoked", "D. All of the mentioned"],
+                correctAnswer: "D"
+            },
+            {
+                question: "A servlet is a Java program that is invoked via HTTP on the webserver.",
+                choices: ["A. True", "B. False"],
+                correctAnswer: "A"
+            },
+            {
+                question: "Which of the following code is used to get an attribute in a HTTP Session object in servlets?",
+                choices: ["A. session.alterAttribute(String name)", "B. session.updateAttribute(String name)", "C. session.getAttribute(String name)", "D. session.setAttribute(String name)"],
+                correctAnswer: "C"
+            },
+            {
+                question: "How can a servlet call a JSP error page?",
+                choices: [
+                    "A. When the servlet throws the exception, it will automatically be caught by the calling JSP page",
+                    "B. This capability is not supported",
+                    "C. The servlet needs to forward the request to the specific error page URL. The exception is passed along as an attribute named 'javax.servlet.jsp.jspException'",
+                    "D. The servlet needs to redirect the response to the specific error page, saving the exception off in a cookie"
+                ],
+                correctAnswer: "C"
+            },
+            {
+                question: "__________ is used to read data from a client request.",
+                choices: ["A. ServletResponse", "B. ServletRequest", "C. Servlet", "D. ServletConfig"],
+                correctAnswer: "B"
+            },
+            {
+                question: "Which of the following ways to create a servlet?",
+                choices: ["A. Using Servlet Interface", "B. Using GenericServlet class", "C. Using HttpServlet class", "D. All of given"],
+                correctAnswer: "D"
+            },
+            {
+                question: "Which component is used to compile, debug and execute the java program?",
+                choices: ["A. JIT", "B. JDK", "C. JVM", "D. JRE"],
+                correctAnswer: "B"
+            },
+            {
+                question: "Which of the following is not a core interface of Hibernate?",
+                choices: ["A. Configuration", "B. Criteria", "C. SessionManagement", "D. Session"],
+                correctAnswer: "C"
+            },
+            {
+                question: "Hibernate SessionFactory represent which level of cache?",
+                choices: ["A. Second Level", "B. Third Level", "C. First Level", "D. Fourth Level"],
+                correctAnswer: "A"
+            },
+            {
+                question: "While creating SessionFactory in hibernate, which design pattern should be adopted?",
+                choices: ["A. Prototype", "B. Singleton"],
+                correctAnswer: "B"
+            },
+            {
+                question: "What is ORM?",
+                choices: ["A. ORM is the automated persistence of objects in a Java application to the tables in a relational database", "B. ORM stands for object-relational mapping", "C. Both A & B", "D. None of the mentioned"],
+                correctAnswer: "C"
+            },
+            {
+                question: "What does the Session object hold?",
+                choices: ["A. Second Level Cache", "B. First Level Cache", "C. Both A & B", "D. None of the mentioned"],
+                correctAnswer: "B"
+            }
+            // Add more questions here
+        ];
+
+        const questionsContainer = document.getElementById('questions-container');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `
+                <p>${index + 1}. ${q.question}</p>
+                ${q.choices.map((choice, i) => `
+                    <label>
+                        <input type="radio" name="q${index}" value="${choice.charAt(0)}">
+                        ${choice}
+                    </label>
+                `).join('')}
+                <hr>
+            `;
+            questionsContainer.appendChild(questionDiv);
+        });
+
+        document.getElementById('mcq-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let score = 0;
+
+            questions.forEach((q, index) => {
+                const userAnswer = document.querySelector(`input[name="q${index}"]:checked`);
+                if (userAnswer && userAnswer.value === q.correctAnswer) {
+                    score++;
+                }
+            });
+
+            alert(`Your score: ${score} out of ${questions.length}`);
+        });
+    </script>
+</body>
+</html>
+
