@@ -2,10 +2,9 @@ import java.io.*;
 import java.net.*;
 
 public class Arlconnetio {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
         try {
-            URI uri = new URI("https://www.google.com");
-            URL url = uri.toURL(); // Convert the URI to a URL
+            URL url = new URL("https://www.google.com"); // Corrected URL
             URLConnection urlcon = url.openConnection();
             InputStream stream = urlcon.getInputStream();
             int i;
@@ -13,10 +12,9 @@ public class Arlconnetio {
                 System.out.print((char) i);
             }
             stream.close(); // Close the InputStream when done.
-        } catch (URISyntaxException e) {
-            System.out.println("URI Syntax Error: " + e.getMessage());
+        
         } catch (IOException e) {
             System.out.println("IO Error: " + e.getMessage());
-        }
+                    }
     }
 }
